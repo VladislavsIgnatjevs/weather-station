@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Scripts -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main_script.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/jquery-dateFormat.js"></script>
+
+    <script src="js/serial.js"></script>
+
+    <!-- Cascading Style Sheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" target="_blank" href="https://github.com/VladislavsIgnatjevs/weather-station">Weather Station</a>
+    </div>
+</nav>
+
+<h1 id="city"></h1>
+
+<section>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Humidity</th>
+            <th>Pressure</th>
+            <th>Clouds</th>
+            <th>Temp</th>
+            <th>Weather</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td id="humidity"></td>
+            <td id="pressure"></td>
+            <td id="clouds"></td>
+            <td id="temp"></td>
+            <td id="forecast"></td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Longitude</th>
+            <th>Latitude</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="startLat"></td>
+            <td id="startLon"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <input type="hidden" id="current_weather" value="" />
+
+</section>
+</body>
+</html>

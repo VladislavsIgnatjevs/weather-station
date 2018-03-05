@@ -1,0 +1,19 @@
+{
+  "name": "Arduino Weather Office Display",
+  "description": "My first Chrome App for displaying weather on large LED matrix connected to my office computer",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "permissions": [
+    "serial",
+    "background",
+    "browser",
+    "geolocation",
+    "notifications"
+    ],
+  "icons": { "16": "weather-16.png", "128": "weather-128.png" }
+}
