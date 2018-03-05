@@ -1,3 +1,5 @@
+var connection = '';
+
 var onGetDevices = function (ports) {
     for (var i = 0; i < ports.length; i++) {
 
@@ -7,7 +9,7 @@ var onGetDevices = function (ports) {
 
             const DEVICE_NAME = ports[i].displayName;
 
-            var connection = new SerialConnection();
+            connection = new SerialConnection();
 
             connection.onConnect.addListener(function () {
                 console.log('connected to: ' + DEVICE_NAME + ' ON ' + DEVICE_PATH);
@@ -20,11 +22,11 @@ var onGetDevices = function (ports) {
 
             connection.connect(DEVICE_PATH);
 
-            setTimeout(function(){
+            setTimeout(function () {
                 var current_weather = $('#current_weather').val();
                 connection.send(current_weather);
 
-                console.log('weather "' + current_weather +'" sent to controller');
+                console.log('weather "' + current_weather + '" sent to controller');
             }, 8000);
 
 
@@ -53,8 +55,6 @@ var str2ab = function (str) {
     return bytes.buffer;
 };
 
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
 
 var SerialConnection = function () {
     this.connectionId = -1;

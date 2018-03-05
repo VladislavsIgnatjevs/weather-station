@@ -3,7 +3,7 @@ function update() {
         startLat = 0,
         api_key = '',
         startLon = 0,
-        geoSuccess = function(position) {
+        geoSuccess = function (position) {
             startPos = position;
             startLat = startPos.coords.latitude;
             startLon = startPos.coords.longitude;
@@ -12,7 +12,7 @@ function update() {
             console.log('Current Longitude: ' + startLon);
 
             //call api
-            $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + startLat +"&lon=" + startLon + '&appid=' + api_key + '&units=metric' ,function(result){
+            $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + startLat + "&lon=" + startLon + '&appid=' + api_key + '&units=metric', function (result) {
 
 
                 $('#city').html(result.name);
@@ -25,35 +25,41 @@ function update() {
 
                 var wID = result.weather[0].id;
 
-                        if ( wID < 300) {
-                            $('#current_weather').val("thunder");
-                        } else if (wID > 300 && wID < 600) {
-                            $('#current_weather').val("rain");
-                        } else if (wID > 600 && wID < 700) {
-                            $('#current_weather').val("snow");
-                        } else if (wID > 700 && wID < 800) {
-                            $('#current_weather').val("mist");
-                        } else if (wID == 800) {
-                            $('#current_weather').val("clear");
-                        } else if (wID > 800 && wID < 900) {
-                            $('#current_weather').val("cloud");
-                        } else if (wID > 900 && wID < 910) {
-                            $('#current_weather').val("extreme");
-                        } else if(wID > 950 && wID < 955) {
-                            $('#current_weather').val("breeze");
-                        } else if (wID > 955 && wID < 960) {
-                            $('#current_weather').val("gale");
-                        } else if (wID > 960) {
-                            $('#current_weather').val("storm");
-                        } else {
-                            $('#current_weather').val("");
-                        }
+                if (wID < 300) {
+                    $('#current_weather').val("thunder");
+                } else if (wID > 300 && wID < 600) {
+                    $('#current_weather').val("rain");
+                } else if (wID > 600 && wID < 700) {
+                    $('#current_weather').val("snow");
+                } else if (wID > 700 && wID < 800) {
+                    $('#current_weather').val("mist");
+                } else if (wID == 800) {
+                    $('#current_weather').val("clear");
+                } else if (wID > 800 && wID < 900) {
+                    $('#current_weather').val("cloud");
+                } else if (wID > 900 && wID < 910) {
+                    $('#current_weather').val("extreme");
+                } else if (wID > 950 && wID < 955) {
+                    $('#current_weather').val("breeze");
+                } else if (wID > 955 && wID < 960) {
+                    $('#current_weather').val("gale");
+                } else if (wID > 960) {
+                    $('#current_weather').val("storm");
+                } else {
+                    $('#current_weather').val("");
+                }
 
+
+                if (connection) {
+                    var current_weather = $('#current_weather').val();
+                    connection.send(current_weather);
+                    console.log('update: weather "' + current_weather + '" sent to controller');
+                }
 
             })
                 .done(function () {
                     console.log("Successful call to weather API");
-                    console.log('Updated at ' + $.format.date(new Date() , 'dd/MM/yyyy HH:mm:ss'));
+                    console.log('Updated at ' + $.format.date(new Date(), 'dd/MM/yyyy HH:mm:ss'));
                 })
                 .fail(function (response) {
                     console.log(response.responseJSON.message);
